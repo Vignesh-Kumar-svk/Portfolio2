@@ -581,3 +581,37 @@ footer{
     }
 
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a revealed section (cards, timeline items, etc.) */
+.reveal .stagger-child {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who've asked their OS for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal .stagger-child {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
